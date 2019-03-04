@@ -1,4 +1,4 @@
-package alvaro.sabi.rosquilletas.gasprice;
+package alvaro.sabi.rosquilletas.gasprice.model;
 
 public enum GasType {
     G98("Gasoline 98", 3),
