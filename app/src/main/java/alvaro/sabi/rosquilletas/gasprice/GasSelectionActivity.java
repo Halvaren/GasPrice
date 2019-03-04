@@ -9,7 +9,7 @@ public class GasSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gas_selection);
+        setContentView(R.layout.gas_selection_layout);
         super.onCreate(savedInstanceState);
     }
 }
