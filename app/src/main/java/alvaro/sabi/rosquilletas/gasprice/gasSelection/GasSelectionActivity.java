@@ -30,7 +30,6 @@ public class GasSelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gas_selection_layout);
-        super.onCreate(savedInstanceState);
 
         presenter = new GasSelectionPresenter(this, this);
 
@@ -40,6 +39,8 @@ public class GasSelectionActivity extends AppCompatActivity {
         fuelTypeSpinner = findViewById(R.id.fuelTypeSpinner);
 
         showPricesButton = findViewById(R.id.showPricesButton);
+
+        showFuelTypes();
     }
 
     public void showCommunities(Community[] communities)
