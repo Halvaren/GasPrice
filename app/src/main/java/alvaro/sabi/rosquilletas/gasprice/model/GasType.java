@@ -15,7 +15,7 @@ public enum GasType {
         this.code = code;
     }
 
-    public String toString() {
+    public String getGasName() {
         return gasName;
     }
 

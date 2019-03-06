@@ -44,35 +44,41 @@ public class GasSelectionActivity extends AppCompatActivity {
 
     public void showCommunities(Community[] communities)
     {
-        ArrayAdapter<Community> adapter = new ArrayAdapter<Community>(this, android.R.layout.simple_spinner_item, communities);
+        ArrayList<String> communityNames = new ArrayList<String>();
+        for(int i = 0; i < communities.length; i++)
+        {
+            communityNames.add(communities[i].toString());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, communityNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         communitySpinner.setAdapter(adapter);
     }
 
     public void showProvinces(Province[] provinces)
     {
-        ArrayAdapter<Province> adapter = new ArrayAdapter<Province>(this, android.R.layout.simple_spinner_item, provinces);
+        ArrayList<String> provinceNames = new ArrayList<String>();
+        for(int i = 0; i < provinces.length; i++)
+        {
+            provinceNames.add(provinces[i].toString());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, provinceNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         provinceSpinner.setAdapter(adapter);
     }
 
     public void showTowns(Town[] towns)
     {
-        ArrayAdapter<Town> adapter = new ArrayAdapter<Town>(this, android.R.layout.simple_dropdown_item_1line, towns);
+        ArrayList<String> townNames = new ArrayList<String>();
+        for(int i = 0; i < towns.length; i++)
+        {
+            townNames.add(towns[i].toString());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, townNames);
         townText.setAdapter(adapter);
     }
 
     private void showFuelTypes()
     {
-        ArrayList<GasType> list = new ArrayList<GasType>();
-        list.add(GasType.G95);
-        list.add(GasType.G98);
-        list.add(GasType.GOA);
-        list.add(GasType.LPG);
-        list.add(GasType.NGO);
-
-        ArrayAdapter<GasType> adapter = new ArrayAdapter<GasType>(this, android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fuelTypeSpinner.setAdapter(adapter);
+        
     }
 }
