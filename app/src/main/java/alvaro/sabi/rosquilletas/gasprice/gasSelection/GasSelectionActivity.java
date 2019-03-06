@@ -1,6 +1,9 @@
 package alvaro.sabi.rosquilletas.gasprice.gasSelection;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -31,8 +34,6 @@ public class GasSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gas_selection_layout);
 
-        presenter = new GasSelectionPresenter(this, this);
-
         communitySpinner = findViewById(R.id.communitySpinner);
         provinceSpinner = findViewById(R.id.provinceSpinner);
         townText = findViewById(R.id.townEditText);
@@ -40,7 +41,50 @@ public class GasSelectionActivity extends AppCompatActivity {
 
         showPricesButton = findViewById(R.id.showPricesButton);
 
+        communitySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getProvinces((Community) communitySpinner.getAdapter().getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        provinceSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getTowns((Province) provinceSpinner.getAdapter().getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        presenter = new GasSelectionPresenter(this, this);
+
         showFuelTypes();
+
+        getCommunities();
+    }
+
+    public void getCommunities()
+    {
+        presenter.getCommunities();
+    }
+
+    public void getProvinces(Community community)
+    {
+        presenter.getProvinces(community.id);
+    }
+
+    public void getTowns(Province province)
+    {
+        presenter.getTowns(province.id);
     }
 
     public void showCommunities(Community[] communities)

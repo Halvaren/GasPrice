@@ -11,6 +11,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "towns")
 public class Town implements Parcelable, Comparable<Town> {
 
+    public Town()
+    {
+
+    }
+
     @PrimaryKey
     public int id;
 
@@ -23,6 +28,13 @@ public class Town implements Parcelable, Comparable<Town> {
     public String toString()
     {
         return name;
+    }
+
+    public Town(String[] params)
+    {
+        id = Integer.parseInt(params[0]);
+        name = params[1];
+        provinceID = Integer.parseInt(params[2]);
     }
 
     //

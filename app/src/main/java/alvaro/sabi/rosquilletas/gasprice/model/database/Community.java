@@ -6,6 +6,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "communities")
 public class Community {
 
+    public Community()
+    {
+
+    }
+
     @PrimaryKey
     public int id;
 
@@ -15,5 +20,11 @@ public class Community {
     public String toString()
     {
         return name;
+    }
+
+    public Community(String[] params)
+    {
+        id = Integer.parseInt(params[0]);
+        name = params[1];
     }
 }

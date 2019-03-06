@@ -8,6 +8,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "provinces")
 public class Province {
 
+    public Province()
+    {
+
+    }
+
     @PrimaryKey
     public int id;
 
@@ -20,5 +25,12 @@ public class Province {
     public String toString()
     {
         return name;
+    }
+
+    public Province(String[] params)
+    {
+        id = Integer.parseInt(params[0]);
+        name = params[1];
+        communityID = Integer.parseInt(params[2]);
     }
 }

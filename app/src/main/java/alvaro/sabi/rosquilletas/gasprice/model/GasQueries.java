@@ -10,7 +10,7 @@ public class GasQueries {
     public RequestQueue queue;
 
     public GasQueries(Context param){
-        queue = Volley.newRequestQueue(param);
+        //queue = Volley.newRequestQueue(param);
         String url = "http://www.google.com";
 
     }
