@@ -42,6 +42,9 @@ public class Town implements Parcelable, Comparable<Town> {
     //
 
     protected Town(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        provinceID = in.readInt();
     }
 
     public static final Creator<Town> CREATOR = new Creator<Town>() {
@@ -63,6 +66,9 @@ public class Town implements Parcelable, Comparable<Town> {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeInt(provinceID);
     }
 
     //

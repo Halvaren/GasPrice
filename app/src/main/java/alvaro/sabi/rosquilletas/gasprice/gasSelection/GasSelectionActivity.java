@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import alvaro.sabi.rosquilletas.gasprice.R;
 import alvaro.sabi.rosquilletas.gasprice.model.GasType;
+import alvaro.sabi.rosquilletas.gasprice.model.SelectedLocation;
 import alvaro.sabi.rosquilletas.gasprice.model.database.Community;
 import alvaro.sabi.rosquilletas.gasprice.model.database.Province;
 import alvaro.sabi.rosquilletas.gasprice.model.database.Town;
@@ -70,6 +71,24 @@ public class GasSelectionActivity extends AppCompatActivity {
         showFuelTypes();
 
         getCommunities();
+
+        if(savedInstanceState != null)
+        {
+            presenter.setSelectedLocation((SelectedLocation) savedInstanceState.getParcelable("SelectedLocation"));
+            presenter.setSelectedTown((Town) savedInstanceState.getParcelable("SelectedTown"));
+            communitySpinner.setSelection(presenter.getSelectedCommunityID());
+            provinceSpinner.setSelection(presenter.getSelectedProvinceID());
+            if(presenter.getSelectedTown() != null)
+                townText.setText(presenter.getSelectedTown().name);
+            fuelTypeSpinner.setSelection(presenter.getSelectedGasTypeID());
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putParcelable("SelectedLocation", presenter.getSelectedLocation());
+        savedInstanceState.putParcelable("SelectedTown", presenter.getSelectedTown());
     }
 
     public void getCommunities()
