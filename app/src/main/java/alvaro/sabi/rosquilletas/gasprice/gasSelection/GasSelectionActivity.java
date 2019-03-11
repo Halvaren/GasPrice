@@ -180,9 +180,12 @@ public class GasSelectionActivity extends AppCompatActivity {
         onTownTextChanged(townText.getText().toString());
     }
 
-    public void nextActivity()
+    public void nextActivity(View view)
     {
         Intent intent = new Intent(GasSelectionActivity.this, ShowGasStationActivity.class);
-        //intent.putExtra("Town", townText);
+        intent.putExtra("Town", presenter.getSelectedTown());
+        intent.putExtra("GasType", ((GasType)fuelTypeSpinner.getSelectedItem()));
+
+        startActivity(intent);
     }
 }

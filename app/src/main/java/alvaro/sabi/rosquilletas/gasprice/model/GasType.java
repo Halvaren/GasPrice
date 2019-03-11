@@ -3,7 +3,7 @@ package alvaro.sabi.rosquilletas.gasprice.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public enum GasType /*implements Parcelable */{
+public enum GasType {
     G98("Gasoline 98", 3),
     GOA("Diesel",4),
     NGO("Premium Diesel", 5),
@@ -17,40 +17,4 @@ public enum GasType /*implements Parcelable */{
         this.gasName = gasName;
         this.code = code;
     }
-
-    /*GasType(Parcel in) {
-        gasName = in.readString();
-        code = in.readInt();
-    }
-
-    public static final Creator<GasType> CREATOR = new Creator<GasType>() {
-        @Override
-        public GasType createFromParcel(Parcel in) {
-            return new GasType(in);
-        }
-
-        @Override
-        public GasType[] newArray(int size) {
-            return new GasType[size];
-        }
-    };
-
-    public String toString() {
-        return gasName;
-    }
-
-    public int getCode(){
-        return code;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(gasName);
-        dest.writeInt(code);
-    }*/
 }

@@ -214,4 +214,8 @@ public class Model {
         }
         return false;
     }
+
+    public Town getSelectedTown() {
+        return selectedTown;
+    }
 }

@@ -15,7 +15,6 @@ public class ShowGasStationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_gas_station_layout);
-        super.onCreate(savedInstanceState);
 
         gasStationList = findViewById(R.id.gasStationList);
         adapter = new ListViewAdapter(this);

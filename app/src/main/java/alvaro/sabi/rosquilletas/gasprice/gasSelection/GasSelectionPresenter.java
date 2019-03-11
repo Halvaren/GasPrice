@@ -71,4 +71,8 @@ public class GasSelectionPresenter {
         view.changedTownTextColor(correct);
         view.enableShowPricesButton(correct);
     }
+
+    public Town getSelectedTown() {
+        return model.getSelectedTown();
+    }
 }
