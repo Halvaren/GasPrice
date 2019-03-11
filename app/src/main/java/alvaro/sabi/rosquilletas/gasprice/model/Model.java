@@ -3,6 +3,7 @@ package alvaro.sabi.rosquilletas.gasprice.model;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.android.volley.Response;
 
@@ -33,6 +34,8 @@ public class Model {
     private Community[] communitiesList;
     private Province[] provincesList;
     private Town[] townsList;
+
+    private Town selectedTown;
 
     private Model(Context context){
         gasQueries = new GasQueries(context);
@@ -198,5 +201,17 @@ public class Model {
                 getCommunities(response, false);
             }
         }.execute();
+    }
+
+    public boolean verifyTextChanged(String s) {
+        if(townsList != null) {
+            for (int i = 0; i < townsList.length; i++) {
+                if (s.equals(townsList[i].name)) {
+                    selectedTown = townsList[i];
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

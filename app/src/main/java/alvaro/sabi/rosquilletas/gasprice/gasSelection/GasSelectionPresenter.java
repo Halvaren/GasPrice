@@ -1,6 +1,7 @@
 package alvaro.sabi.rosquilletas.gasprice.gasSelection;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Response;
 
@@ -12,16 +13,17 @@ import alvaro.sabi.rosquilletas.gasprice.model.database.Town;
 public class GasSelectionPresenter {
 
     private GasSelectionActivity view;
+    private Model model;
 
     public GasSelectionPresenter(GasSelectionActivity view, Context context)
     {
         this.view = view;
-        Model.getInstance(context);
+        model = Model.getInstance(context);
     }
 
     public void getCommunities()
     {
-        Model.getInstance(null).getCommunities(new Response.Listener<Community[]>() {
+        model.getCommunities(new Response.Listener<Community[]>() {
             @Override
             public void onResponse(Community[] response) {
                 showCommunities(response);
@@ -31,7 +33,7 @@ public class GasSelectionPresenter {
 
     public void getProvinces(int communityID)
     {
-        Model.getInstance(null).getProvinces(new Response.Listener<Province[]>() {
+        model.getProvinces(new Response.Listener<Province[]>() {
             @Override
             public void onResponse(Province[] response) {
                 showProvinces(response);
@@ -41,7 +43,7 @@ public class GasSelectionPresenter {
 
     public void getTowns(int provinceID)
     {
-        Model.getInstance(null).getTowns(new Response.Listener<Town[]>() {
+        model.getTowns(new Response.Listener<Town[]>() {
             @Override
             public void onResponse(Town[] response) {
                 showTowns(response);
@@ -62,5 +64,11 @@ public class GasSelectionPresenter {
     public void showTowns(Town[] list)
     {
         view.showTowns(list);
+    }
+
+    public void onTownTextChanged(String s) {
+        boolean correct = model.verifyTextChanged(s);
+        view.changedTownTextColor(correct);
+        view.enableShowPricesButton(correct);
     }
 }
