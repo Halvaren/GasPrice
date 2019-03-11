@@ -34,11 +34,6 @@ public class Model {
     private Province[] provincesList;
     private Town[] townsList;
 
-    private int selectedCommunityID;
-    private int selectedProvinceID;
-    private Town selectedTown;
-    private int selectedGasTypeID;
-
     private Model(Context context){
         gasQueries = new GasQueries(context);
         resources = context.getResources();
@@ -101,7 +96,6 @@ public class Model {
 
     public void getProvinces(final Response.Listener<Province[]> response, final int communityID)
     {
-        setSelectedCommunityID(communityID);
         new AsyncTask<Void, Void, Province[]>() {
             @Override
             protected Province[] doInBackground(Void... voids) {
@@ -119,7 +113,6 @@ public class Model {
 
     public void getTowns(final Response.Listener<Town[]> response, final int provinceID)
     {
-        setSelectedProvinceID(provinceID);
         new AsyncTask<Void, Void, Town[]>() {
             @Override
             protected Town[] doInBackground(Void... voids) {
@@ -205,57 +198,5 @@ public class Model {
                 getCommunities(response, false);
             }
         }.execute();
-    }
-
-    public SelectedLocation getSelectedLocation()
-    {
-        return new SelectedLocation(selectedCommunityID, selectedProvinceID, selectedGasTypeID);
-    }
-
-    public void setSelectedLocation(SelectedLocation param)
-    {
-        selectedCommunityID = param.selectedCommunityID;
-        selectedProvinceID = param.selectedProvinceID;
-        selectedGasTypeID = param.selectedGasTypeID;
-    }
-
-    public void setSelectedCommunityID(int param)
-    {
-        selectedCommunityID = param;
-    }
-
-    public void setSelectedProvinceID(int param)
-    {
-        selectedProvinceID = param;
-    }
-
-    public void setSelectedTown(Town param)
-    {
-        selectedTown = param;
-    }
-
-    public void setSelectedGasTypeID(int param)
-    {
-        selectedGasTypeID = param;
-    }
-
-    public int getSelectedCommunityID()
-    {
-        return selectedCommunityID;
-    }
-
-    public int getSelectedProvinceID()
-    {
-        return selectedProvinceID;
-    }
-
-    public Town getSelectedTown()
-    {
-        return selectedTown;
-    }
-
-    public int getSelectedGasTypeID()
-    {
-        return selectedGasTypeID;
     }
 }
