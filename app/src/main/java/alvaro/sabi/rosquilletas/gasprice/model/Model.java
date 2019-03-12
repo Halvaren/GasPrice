@@ -3,17 +3,14 @@ package alvaro.sabi.rosquilletas.gasprice.model;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.android.volley.Response;
 
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import alvaro.sabi.rosquilletas.gasprice.R;
-import alvaro.sabi.rosquilletas.gasprice.gasSelection.GasSelectionPresenter;
 import alvaro.sabi.rosquilletas.gasprice.model.database.Community;
 import alvaro.sabi.rosquilletas.gasprice.model.database.GasDao;
 import alvaro.sabi.rosquilletas.gasprice.model.database.GasDatabase;
@@ -36,6 +33,8 @@ public class Model {
     private Town[] townsList;
 
     private Town selectedTown;
+
+    private GasType selectedGas;
 
     private Model(Context context){
         gasQueries = new GasQueries(context);
@@ -217,5 +216,27 @@ public class Model {
 
     public Town getSelectedTown() {
         return selectedTown;
+    }
+
+    public void setTown(Town town) {
+        selectedTown = town;
+    }
+
+    public void setGasPrice(GasType gas) {
+        selectedGas = gas;
+    }
+
+    public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response) {
+        new AsyncTask<Void, Void, ArrayList<StationPrice>>() {
+
+            @Override
+            protected ArrayList<StationPrice> doInBackground(Void... voids) {
+                return null;
+            }
+
+            protected void onPostExecute(ArrayList<StationPrice> list) {
+                response.onResponse(list);
+            }
+        };
     }
 }
