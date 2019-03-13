@@ -235,13 +235,11 @@ public class Model {
 
             @Override
             protected JSONObject doInBackground(Void... voids) {
-                final JSONObject[] jsonObject = new JSONObject[1];
-                Log.d("f", "f");
                 gasQueries.addRequest(selectedTown.id, selectedGas.code,
                         new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONObject response) {
-                                jsonObject[0] = response;
+                            public void onResponse(JSONObject response2) {
+                                response.onResponse(gasQueries.parseJSONObject(response2));
                             }
                         },
                         new Response.ErrorListener() {
@@ -250,11 +248,11 @@ public class Model {
 
                             }
                         });
-                return jsonObject[0];
+                return null;
             }
 
             protected void onPostExecute(JSONObject jsonObject) {
-                response.onResponse(gasQueries.parseJSONObject(jsonObject));
+                //response.onResponse(gasQueries.parseJSONObject(jsonObject));
             }
         }.execute();
     }

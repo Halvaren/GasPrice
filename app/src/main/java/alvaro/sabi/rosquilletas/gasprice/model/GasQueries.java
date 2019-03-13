@@ -27,16 +27,16 @@ public class GasQueries {
     }
 
     public void addRequest(int townId, int gasTypeId, Response.Listener<JSONObject> listener, Response.ErrorListener error) {
-        url += Integer.toString(townId) + "/" + Integer.toString(gasTypeId);
-        Log.d("f", url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, error);
+        String finalUrl = url + Integer.toString(townId) + "/" + Integer.toString(gasTypeId);
+
+        Log.d("f", "f1");
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, finalUrl, null, listener, error);
 
         queue.add(request);
     }
 
     public ArrayList<StationPrice> parseJSONObject(JSONObject response) {
         ArrayList<StationPrice> list = new ArrayList();
-        Log.d("f", Boolean.toString(response == null));
         try {
             JSONArray JSONlist = response.getJSONArray("ListaEESSPrecio");
             for (int i = 0; i < JSONlist.length(); i++) {
