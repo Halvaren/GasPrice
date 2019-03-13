@@ -3,8 +3,12 @@ package alvaro.sabi.rosquilletas.gasprice.model;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -227,16 +231,33 @@ public class Model {
     }
 
     public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response) {
-        new AsyncTask<Void, Void, ArrayList<StationPrice>>() {
+        new AsyncTask<Void, Void, JSONObject>() {
 
             @Override
-            protected ArrayList<StationPrice> doInBackground(Void... voids) {
-                return null;
+            protected JSONObject doInBackground(Void... voids) {
+                final JSONObject[] jsonObject = new JSONObject[1];
+                Log.d("f", "f");
+                gasQueries.addRequest(selectedTown.id, selectedGas.code,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                jsonObject[0] = response;
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        });
+                return jsonObject[0];
             }
 
-            protected void onPostExecute(ArrayList<StationPrice> list) {
-                response.onResponse(list);
+            protected void onPostExecute(JSONObject jsonObject) {
+                response.onResponse(gasQueries.parseJSONObject(jsonObject));
             }
-        };
+        }.execute();
     }
+
+
 }

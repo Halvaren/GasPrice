@@ -2,6 +2,7 @@ package alvaro.sabi.rosquilletas.gasprice.showPrices;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class ShowGasStationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         presenter.setTown((Town)intent.getParcelableExtra("Town"));
         presenter.setPrice((GasType) intent.getSerializableExtra("GasType"));
+
+
+        getPriceList();
     }
 
     public void getPriceList() {
