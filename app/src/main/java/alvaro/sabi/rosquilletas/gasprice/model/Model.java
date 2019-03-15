@@ -32,13 +32,13 @@ public class Model {
     private GasDatabase database;
     private GasDao dao;
 
-    private Community[] communitiesList;
-    private Province[] provincesList;
     private Town[] townsList;
 
     private Town selectedTown;
 
     private GasType selectedGas;
+
+    private String databaseError = "Error in the access to the database";
 
     private Model(Context context){
         gasQueries = new GasQueries(context);
@@ -57,7 +57,7 @@ public class Model {
         return instance;
     }
 
-    public void getCommunities(final Response.Listener<Community[]> response, boolean checkDatabaseEmpty)
+    public void getCommunities(final Response.Listener<Community[]> response, final Response.Listener<String> errorResponse, boolean checkDatabaseEmpty)
     {
         if(checkDatabaseEmpty)
         {
@@ -72,11 +72,11 @@ public class Model {
                     super.onPostExecute(rows);
                     if(rows == 0)
                     {
-                        initializeDatabase(response);
+                        initializeDatabase(response, errorResponse);
                     }
                     else
                     {
-                        getCommunities(response, false);
+                        getCommunities(response, errorResponse, false);
                     }
                 }
             }.execute();
@@ -92,15 +92,21 @@ public class Model {
                 @Override
                 protected void onPostExecute(Community[] communities) {
                     super.onPostExecute(communities);
-                    response.onResponse(communities);
-                    communitiesList = communities;
+                    if(communities == null || communities.length == 0)
+                    {
+                        errorResponse.onResponse(databaseError);
+                    }
+                    else
+                    {
+                        response.onResponse(communities);
+                    }
                 }
             }.execute();
         }
 
     }
 
-    public void getProvinces(final Response.Listener<Province[]> response, final int communityID)
+    public void getProvinces(final Response.Listener<Province[]> response, final Response.Listener<String> errorResponse, final int communityID)
     {
         new AsyncTask<Void, Void, Province[]>() {
             @Override
@@ -111,13 +117,19 @@ public class Model {
             @Override
             protected void onPostExecute(Province[] provinces) {
                 super.onPostExecute(provinces);
-                response.onResponse(provinces);
-                provincesList = provinces;
+                if(provinces == null || provinces.length == 0)
+                {
+                    errorResponse.onResponse(databaseError);
+                }
+                else
+                {
+                    response.onResponse(provinces);
+                }
             }
         }.execute();
     }
 
-    public void getTowns(final Response.Listener<Town[]> response, final int provinceID)
+    public void getTowns(final Response.Listener<Town[]> response, final Response.Listener<String> errorResponse, final int provinceID)
     {
         new AsyncTask<Void, Void, Town[]>() {
             @Override
@@ -128,13 +140,20 @@ public class Model {
             @Override
             protected void onPostExecute(Town[] towns) {
                 super.onPostExecute(towns);
-                response.onResponse(towns);
-                townsList = towns;
+                if(towns == null || towns.length == 0)
+                {
+                    errorResponse.onResponse(databaseError);
+                }
+                else
+                {
+                    response.onResponse(towns);
+                    townsList = towns;
+                }
             }
         }.execute();
     }
 
-    private void initializeDatabase(Response.Listener<Community[]> response)
+    private void initializeDatabase(Response.Listener<Community[]> response, Response.Listener<String> errorResponse)
     {
         //Communities
         ArrayList<Community> communities = new ArrayList<>();
@@ -184,10 +203,10 @@ public class Model {
         provincesArray = provinces.toArray(provincesArray);
         townsArray = towns.toArray(townsArray);
 
-        insertLists(communitiesArray, provincesArray, townsArray, response);
+        insertLists(communitiesArray, provincesArray, townsArray, response, errorResponse);
     }
 
-    private void insertLists(final Community[] communities, final Province[] provinces, final Town[] towns, final Response.Listener<Community[]> response)
+    private void insertLists(final Community[] communities, final Province[] provinces, final Town[] towns, final Response.Listener<Community[]> response, final Response.Listener<String> errorResponse)
     {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -201,7 +220,7 @@ public class Model {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                getCommunities(response, false);
+                getCommunities(response, errorResponse, false);
             }
         }.execute();
     }
@@ -231,8 +250,8 @@ public class Model {
     }
 
     public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response) {
-        new AsyncTask<Void, Void, Void>() {
 
+        new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
                 gasQueries.addRequest(selectedTown.id, selectedGas.code,

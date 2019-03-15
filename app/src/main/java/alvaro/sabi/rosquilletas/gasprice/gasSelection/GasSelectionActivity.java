@@ -188,4 +188,9 @@ public class GasSelectionActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    public void showToast(String message)
+    {
+
+    }
 }

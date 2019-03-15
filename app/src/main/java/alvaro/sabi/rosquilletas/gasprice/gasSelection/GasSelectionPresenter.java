@@ -24,31 +24,47 @@ public class GasSelectionPresenter {
     public void getCommunities()
     {
         model.getCommunities(new Response.Listener<Community[]>() {
-            @Override
-            public void onResponse(Community[] response) {
-                showCommunities(response);
-            }
-        }, true);
+                                 @Override
+                                 public void onResponse(Community[] response) {
+                                     showCommunities(response);
+                                 }
+                             }, new Response.Listener<String>() {
+                                 @Override
+                                 public void onResponse(String response) {
+                                     showToast(response);
+                                 }
+                             }
+                , true);
     }
 
     public void getProvinces(int communityID)
     {
         model.getProvinces(new Response.Listener<Province[]>() {
-            @Override
-            public void onResponse(Province[] response) {
-                showProvinces(response);
-            }
-        }, communityID);
+                            @Override
+                            public void onResponse(Province[] response) {
+                                showProvinces(response);
+                            }
+                        }, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                showToast(response);
+                            }
+                        }, communityID);
     }
 
     public void getTowns(int provinceID)
     {
         model.getTowns(new Response.Listener<Town[]>() {
-            @Override
-            public void onResponse(Town[] response) {
-                showTowns(response);
-            }
-        }, provinceID);
+                        @Override
+                        public void onResponse(Town[] response) {
+                            showTowns(response);
+                        }
+                    }, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            showToast(response);
+                        }
+                    }, provinceID);
     }
 
     public void showCommunities(Community[] list)
@@ -74,5 +90,10 @@ public class GasSelectionPresenter {
 
     public Town getSelectedTown() {
         return model.getSelectedTown();
+    }
+
+    public void showToast(String message)
+    {
+        view.showToast(message);
     }
 }
