@@ -1,19 +1,19 @@
 01#Andalucia
-02#Aragón
+02#AragÃ³n
 03#Asturias
 04#Baleares
 05#Canarias
 06#Cantabria
 07#Castilla la Mancha
-08#Castilla y León
-09#Cataluña
+08#Castilla y LeÃ³n
+09#CataluÃ±a
 10#Comunidad Valenciana
 11#Extremadura
 12#Galicia
 13#Madrid
 14#Murcia
 15#Navarra
-16#País Vasco
+16#PaÃ­s Vasco
 17#Rioja (La)
 18#Ceuta
 19#Melilla

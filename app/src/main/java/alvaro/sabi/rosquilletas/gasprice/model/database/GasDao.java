@@ -1,8 +1,10 @@
 package alvaro.sabi.rosquilletas.gasprice.model.database;
 
+import java.net.CookieHandler;
 import java.util.ArrayList;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 

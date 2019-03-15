@@ -231,10 +231,10 @@ public class Model {
     }
 
     public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response) {
-        new AsyncTask<Void, Void, JSONObject>() {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
-            protected JSONObject doInBackground(Void... voids) {
+            protected Void doInBackground(Void... voids) {
                 gasQueries.addRequest(selectedTown.id, selectedGas.code,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -249,10 +249,6 @@ public class Model {
                             }
                         });
                 return null;
-            }
-
-            protected void onPostExecute(JSONObject jsonObject) {
-                //response.onResponse(gasQueries.parseJSONObject(jsonObject));
             }
         }.execute();
     }
