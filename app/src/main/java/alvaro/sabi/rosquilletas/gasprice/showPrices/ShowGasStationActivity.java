@@ -57,8 +57,10 @@ public class ShowGasStationActivity extends AppCompatActivity {
     }
 
     public void showDialog(View view, StationPrice station) {
+
         ShowGasStationDialog dialog = new ShowGasStationDialog();
         dialog.setStation(station);
+        dialog.setContext(this);
         dialog.show(getSupportFragmentManager(), "my_dialog");
     }
 }

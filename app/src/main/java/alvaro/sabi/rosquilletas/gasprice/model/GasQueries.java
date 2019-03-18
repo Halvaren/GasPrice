@@ -40,12 +40,13 @@ public class GasQueries {
         try {
             JSONArray JSONlist = response.getJSONArray("ListaEESSPrecio");
             for (int i = 0; i < JSONlist.length(); i++) {
+
                 JSONObject currentObject = (JSONObject) JSONlist.get(i);
                 list.add(new StationPrice(currentObject.getString("Rótulo"),
                         currentObject.getString("Dirección"),
                         currentObject.getString("PrecioProducto"),
-                        currentObject.getString("Latitud"),
-                        currentObject.getString("Longitud (WGS84)")));
+                        currentObject.getString("Latitud").replaceAll(",", "."),
+                        currentObject.getString("Longitud (WGS84)").replaceAll(",", ".")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
