@@ -15,11 +15,15 @@ import alvaro.sabi.rosquilletas.gasprice.model.StationPrice;
 public class ListViewAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<StationPrice> stationPriceList;
+    //private ShowGasStationActivity view;
 
-    public ListViewAdapter (Context param0)
+
+    public ListViewAdapter (Context param0, ShowGasStationActivity view)
     {
         context = param0;
         stationPriceList = new ArrayList<>();
+       // this.view = view;
+
     }
 
     @Override
@@ -48,12 +52,17 @@ public class ListViewAdapter extends BaseAdapter {
         priceText.setText(stationPrice.getProductPrice());
         addressText.setText(stationPrice.getAddress());
 
+
+
         return convertView;
     }
 
     public void setStationGasList(ArrayList<StationPrice> list)
     {
         stationPriceList = list;
+
         notifyDataSetChanged();
     }
+
+
 }

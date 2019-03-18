@@ -2,7 +2,8 @@ package alvaro.sabi.rosquilletas.gasprice.showPrices;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -26,8 +27,15 @@ public class ShowGasStationActivity extends AppCompatActivity {
         setContentView(R.layout.show_gas_station_layout);
 
         gasStationList = findViewById(R.id.gasStationList);
-        adapter = new ListViewAdapter(this);
+        adapter = new ListViewAdapter(this, this);
         gasStationList.setAdapter(adapter);
+        gasStationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDialog(view, (StationPrice) gasStationList.getAdapter().getItem(position));
+
+            }
+        });
 
         presenter = new ShowPricesPresenter(this, this);
 
@@ -45,5 +53,12 @@ public class ShowGasStationActivity extends AppCompatActivity {
 
     public void showPriceList(ArrayList<StationPrice> prices) {
         ((ListViewAdapter) gasStationList.getAdapter()).setStationGasList(prices);
+
+    }
+
+    public void showDialog(View view, StationPrice station) {
+        ShowGasStationDialog dialog = new ShowGasStationDialog();
+        dialog.setStation(station);
+        dialog.show(getSupportFragmentManager(), "my_dialog");
     }
 }

@@ -41,6 +41,7 @@ public class ShowPricesPresenter {
 
     public void showPriceList(ArrayList<StationPrice> prices) {
         view.showPriceList(prices);
+
     }
 
 
