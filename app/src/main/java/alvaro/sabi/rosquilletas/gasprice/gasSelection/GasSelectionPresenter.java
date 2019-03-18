@@ -23,6 +23,7 @@ public class GasSelectionPresenter {
 
     public void getCommunities()
     {
+        view.showProgressBar(true);
         model.getCommunities(new Response.Listener<Community[]>() {
                                  @Override
                                  public void onResponse(Community[] response) {
@@ -39,6 +40,7 @@ public class GasSelectionPresenter {
 
     public void getProvinces(int communityID)
     {
+        view.showProgressBar(true);
         model.getProvinces(new Response.Listener<Province[]>() {
                             @Override
                             public void onResponse(Province[] response) {
@@ -54,6 +56,7 @@ public class GasSelectionPresenter {
 
     public void getTowns(int provinceID)
     {
+        view.showProgressBar(true);
         model.getTowns(new Response.Listener<Town[]>() {
                         @Override
                         public void onResponse(Town[] response) {
@@ -69,16 +72,19 @@ public class GasSelectionPresenter {
 
     public void showCommunities(Community[] list)
     {
+        view.showProgressBar(false);
         view.showCommunities(list);
     }
 
     public void showProvinces(Province[] list)
     {
+        view.showProgressBar(false);
         view.showProvinces(list);
     }
 
     public void showTowns(Town[] list)
     {
+        view.showProgressBar(false);
         view.showTowns(list);
     }
 

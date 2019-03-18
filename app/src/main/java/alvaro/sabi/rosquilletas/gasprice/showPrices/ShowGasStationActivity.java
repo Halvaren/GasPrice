@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,8 +20,8 @@ public class ShowGasStationActivity extends AppCompatActivity {
 
     private ListView gasStationList;
     private ListViewAdapter adapter;
+    private ProgressBar progressBar;
     public ShowPricesPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class ShowGasStationActivity extends AppCompatActivity {
 
             }
         });
+
+        progressBar = findViewById(R.id.progressBar2);
 
         presenter = new ShowPricesPresenter(this, this);
 
@@ -56,11 +60,21 @@ public class ShowGasStationActivity extends AppCompatActivity {
 
     }
 
+    public void showToast(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void showDialog(View view, StationPrice station) {
 
         ShowGasStationDialog dialog = new ShowGasStationDialog();
         dialog.setStation(station);
         dialog.setContext(this);
         dialog.show(getSupportFragmentManager(), "my_dialog");
+    }
+
+    public void showProgressBar(boolean param)
+    {
+        progressBar.setVisibility(param ? View.VISIBLE : View.GONE);
     }
 }

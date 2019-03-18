@@ -3,6 +3,7 @@ package alvaro.sabi.rosquilletas.gasprice.showPrices;
 import android.content.Context;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
@@ -31,20 +32,31 @@ public class ShowPricesPresenter {
 
     public void getPriceList(){
 
+        view.showProgressBar(true);
         model.getPriceList(new Response.Listener<ArrayList<StationPrice>>()
         {
             public void onResponse(ArrayList<StationPrice> priceList) {
                 showPriceList(priceList);
             }
+        },
+        new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showToast("Network access error");
+            }
         });
     }
 
     public void showPriceList(ArrayList<StationPrice> prices) {
+        view.showProgressBar(false);
         view.showPriceList(prices);
-
     }
 
-
+    public void showToast(String message)
+    {
+        view.showToast(message);
+    }
 }
 
 

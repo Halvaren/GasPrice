@@ -249,7 +249,7 @@ public class Model {
         selectedGas = gas;
     }
 
-    public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response) {
+    public void getPriceList(final Response.Listener<ArrayList<StationPrice>> response, final Response.ErrorListener errorListener) {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -264,7 +264,7 @@ public class Model {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+                                errorListener.onErrorResponse(error);
                             }
                         });
                 return null;
