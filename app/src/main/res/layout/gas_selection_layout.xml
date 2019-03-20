@@ -8,34 +8,35 @@
 
     <Spinner
         android:id="@+id/provinceSpinner"
-        android:layout_width="231dp"
-        android:layout_height="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/communitySpinner"
+        app:layout_constraintStart_toStartOf="@+id/communitySpinner"
         app:layout_constraintTop_toBottomOf="@+id/communitySpinner" />
 
     <Spinner
         android:id="@+id/fuelTypeSpinner"
-        android:layout_width="237dp"
-        android:layout_height="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/fuelTypeText"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/townEditText"
+        app:layout_constraintStart_toStartOf="@+id/townEditText"
         app:layout_constraintTop_toBottomOf="@+id/townEditText" />
 
     <Spinner
         android:id="@+id/communitySpinner"
         android:layout_width="237dp"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="92dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/communityText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/communityText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -100,12 +101,11 @@
 
     <AutoCompleteTextView
         android:id="@+id/townEditText"
-        android:layout_width="241dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/provinceSpinner"
+        app:layout_constraintStart_toStartOf="@+id/provinceSpinner"
         app:layout_constraintTop_toBottomOf="@+id/provinceSpinner" />
 
     <Button

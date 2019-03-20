@@ -8,34 +8,34 @@
 
     <Spinner
         android:id="@+id/provinceSpinner"
-        android:layout_width="495dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/communitySpinner" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/provinceText"
+        app:layout_constraintEnd_toEndOf="@+id/communitySpinner"
+        app:layout_constraintStart_toStartOf="@+id/communitySpinner"
+        app:layout_constraintTop_toTopOf="@+id/provinceText" />
 
     <Spinner
         android:id="@+id/fuelTypeSpinner"
-        android:layout_width="497dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/fuelTypeText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/townEditText" />
+        app:layout_constraintEnd_toEndOf="@+id/townEditText"
+        app:layout_constraintStart_toStartOf="@+id/townEditText"
+        app:layout_constraintTop_toTopOf="@+id/fuelTypeText" />
 
     <Spinner
         android:id="@+id/communitySpinner"
-        android:layout_width="494dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_width="459dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/communityText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/communityText"
+        app:layout_constraintTop_toTopOf="@+id/communityText" />
 
     <TextView
         android:id="@+id/communityText"
@@ -54,15 +54,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:text="Province:"
-        app:layout_constraintBottom_toBottomOf="@+id/provinceSpinner"
         app:layout_constraintEnd_toEndOf="@+id/communityText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/communityText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/communityText" />
 
     <TextView
         android:id="@+id/townText"
@@ -70,15 +68,12 @@
         android:layout_height="22dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="24dp"
         android:text="Town:"
-        app:layout_constraintBottom_toBottomOf="@+id/townEditText"
         app:layout_constraintEnd_toEndOf="@+id/provinceText"
         app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/provinceText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/provinceText" />
 
     <TextView
         android:id="@+id/fuelTypeText"
@@ -86,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
         android:text="Type of fuel:"
         app:layout_constraintEnd_toEndOf="@+id/townText"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,13 +90,12 @@
 
     <AutoCompleteTextView
         android:id="@+id/townEditText"
-        android:layout_width="496dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/provinceSpinner" />
+        app:layout_constraintBottom_toBottomOf="@+id/townText"
+        app:layout_constraintEnd_toEndOf="@+id/provinceSpinner"
+        app:layout_constraintStart_toStartOf="@+id/provinceSpinner"
+        app:layout_constraintTop_toTopOf="@+id/townText" />
 
     <Button
         android:id="@+id/showPricesButton"
@@ -109,22 +103,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="14dp"
         android:onClick="nextActivity"
         android:text="Show prices"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuelTypeSpinner" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginLeft="181dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginLeft="182dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="182dp"
         android:layout_marginRight="182dp"

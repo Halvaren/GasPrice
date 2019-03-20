@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "communities")
 public class Community {
 
+    public Community() {}
+
     @PrimaryKey
     public int id;
 
