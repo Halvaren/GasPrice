@@ -3,7 +3,8 @@ package alvaro.sabi.rosquilletas.gasprice.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public enum GasType {
+public enum GasType { //Utilizamos un enum para guardar los tipos de combustibles
+    //La lista de combustibles
     G98("Gasoline 98", 3),
     GOA("Diesel",4),
     NGO("Premium Diesel", 5),
@@ -13,6 +14,7 @@ public enum GasType {
     public final String gasName;
     public final int code;
 
+    //Constructor
     GasType(String gasName, int code) {
         this.gasName = gasName;
         this.code = code;

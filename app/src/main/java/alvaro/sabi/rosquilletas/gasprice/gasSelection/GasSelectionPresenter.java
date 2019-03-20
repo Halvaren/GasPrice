@@ -25,7 +25,8 @@ public class GasSelectionPresenter {
     // Métodos para pedir y devolver las listas de comunidades, provincias y pueblos
     //
 
-    public void getCommunities() //Se piden las comunidades
+    //Se piden las comunidades
+    public void getCommunities()
     {
         view.showProgressBar(true); //Se muestra la barra de progreso y se desmuestrará cuando se envíe la lista de comunidades
         model.getCommunities(new Response.Listener<Community[]>() {
@@ -42,7 +43,8 @@ public class GasSelectionPresenter {
                 , true);
     }
 
-    public void getProvinces(int communityID) //Se piden las provincias de la comunidad seleccionada
+    //Se piden las provincias de la comunidad seleccionada
+    public void getProvinces(int communityID)
     {
         view.showProgressBar(true); //Se muestra la barra de progreso y se desmuestrará cuando se envíe la lista de provincias
         model.getProvinces(new Response.Listener<Province[]>() {
@@ -58,7 +60,8 @@ public class GasSelectionPresenter {
                         }, communityID);
     }
 
-    public void getTowns(int provinceID) //Se piden los pueblos de las provincia seleccionada
+    //Se piden los pueblos de las provincia seleccionada
+    public void getTowns(int provinceID)
     {
         view.showProgressBar(true); //Se muestra la barra de progreso y se desmuestrará cuando se envíe la lista de pueblos
         model.getTowns(new Response.Listener<Town[]>() {
@@ -74,19 +77,22 @@ public class GasSelectionPresenter {
                     }, provinceID);
     }
 
-    public void showCommunities(Community[] list) //Envia al view la lista de comunidades ya obtenida por el modelo
+    //Envia al view la lista de comunidades ya obtenida por el modelo
+    public void showCommunities(Community[] list)
     {
         view.showProgressBar(false); //Hace desaparecer la barra de progreso porque ya se tiene la lista de comunidades
         view.showCommunities(list);
     }
 
-    public void showProvinces(Province[] list) //Envia al view la lista de provincias ya obtenida por el modelo
+    //Envia al view la lista de provincias ya obtenida por el modelo
+    public void showProvinces(Province[] list)
     {
         view.showProgressBar(false); //Hace desaparecer la barra de progreso porque ya se tiene la lista de provincias
         view.showProvinces(list);
     }
 
-    public void showTowns(Town[] list) //Envia al view la lista de pueblos ya obtenida por el modelo
+    //Envia al view la lista de pueblos ya obtenida por el modelo
+    public void showTowns(Town[] list)
     {
         view.showProgressBar(false); //Hace desaparecer la barra de progreso porque ya se tiene la lista de pueblos
         view.showTowns(list);
@@ -96,20 +102,23 @@ public class GasSelectionPresenter {
     // Otros métodos
     //
 
-    public void onTownTextChanged(String s)  //Recibe un texto correspondiente a un posible pueblo. Le pide al modelo que verifique si existe y
-                                             //manda al resultado a la view para cambiar el color del texto del pueblo y activar/desactivar el botón de cambiar de actividad
+    //Recibe un texto correspondiente a un posible pueblo. Le pide al modelo que verifique si existe y
+    //manda al resultado a la view para cambiar el color del texto del pueblo y activar/desactivar el botón de cambiar de actividad
+    public void onTownTextChanged(String s)
     {
         boolean correct = model.verifyTextChanged(s);
         view.changedTownTextColor(correct);
         view.enableShowPricesButton(correct);
     }
 
-    public Town getSelectedTown() //Devuelve el pueblo seleccionado pidiéndoselo al modelo
+    //Devuelve el pueblo seleccionado pidiéndoselo al modelo
+    public Town getSelectedTown()
     {
         return model.getSelectedTown();
     }
 
-    public void showToast(String message) //Recibe un mensaje que mostrar mediante un Toast (el view generará el Toast)
+    //Recibe un mensaje que mostrar mediante un Toast (el view generará el Toast)
+    public void showToast(String message)
     {
         view.showToast(message);
     }

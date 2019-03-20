@@ -8,11 +8,6 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "provinces")
 public class Province {
 
-    public Province()
-    {
-
-    }
-
     @PrimaryKey
     public int id;
 

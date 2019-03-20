@@ -15,15 +15,12 @@ import alvaro.sabi.rosquilletas.gasprice.model.StationPrice;
 public class ListViewAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<StationPrice> stationPriceList;
-    //private ShowGasStationActivity view;
 
-
-    public ListViewAdapter (Context param0, ShowGasStationActivity view)
+    //Constructor
+    public ListViewAdapter (Context param0)
     {
         context = param0;
         stationPriceList = new ArrayList<>();
-       // this.view = view;
-
     }
 
     @Override
@@ -45,6 +42,7 @@ public class ListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         StationPrice stationPrice = (StationPrice) getItem(position);
 
+        //Cada elemento dispone de una layout específica donde se muestra el precio del combustible seleccionado y la dirección de la gasolinera
         convertView = LayoutInflater.from(context).inflate(R.layout.gas_station_list_item, null);
         TextView priceText = convertView.findViewById(R.id.priceText);
         TextView addressText = convertView.findViewById(R.id.addressText);
@@ -52,11 +50,10 @@ public class ListViewAdapter extends BaseAdapter {
         priceText.setText(stationPrice.getProductPrice());
         addressText.setText(stationPrice.getAddress());
 
-
-
         return convertView;
     }
 
+    //Método que sirve para actualizar la lista de StationPrice
     public void setStationGasList(ArrayList<StationPrice> list)
     {
         stationPriceList = list;

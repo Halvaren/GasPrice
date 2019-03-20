@@ -11,11 +11,6 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "towns")
 public class Town implements Parcelable, Comparable<Town> {
 
-    public Town()
-    {
-
-    }
-
     @PrimaryKey
     public int id;
 

@@ -116,22 +116,26 @@ public class GasSelectionActivity extends AppCompatActivity {
     // Métodos para rellenar los spinner y el texto de autocompletado
     //
 
-    public void getCommunities() //Pide al presenter la lista de comunidades
+    //Pide al presenter la lista de comunidades
+    public void getCommunities()
     {
         presenter.getCommunities();
     }
 
-    public void getProvinces(Community community) //Pide al presenter la lista de provincias de la comunidad seleccionada
+    //Pide al presenter la lista de provincias de la comunidad seleccionada
+    public void getProvinces(Community community)
     {
         presenter.getProvinces(community.id);
     }
 
-    public void getTowns(Province province) //Pide al presenter la lista de pueblos de la provincia seleccionada
+    //Pide al presenter la lista de pueblos de la provincia seleccionada
+    public void getTowns(Province province)
     {
         presenter.getTowns(province.id);
     }
 
-    public void showCommunities(Community[] communities) //Este método será llamado por el presenter una vez tenga la lista de comunidades
+    //Este método será llamado por el presenter una vez tenga la lista de comunidades
+    public void showCommunities(Community[] communities)
     {
         ArrayAdapter<Community> adapter = new ArrayAdapter<Community>(this, android.R.layout.simple_spinner_item, communities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -141,20 +145,23 @@ public class GasSelectionActivity extends AppCompatActivity {
         //Por lo que pide a su vez la lista de provincias, y a su vez, la de pueblos
     }
 
-    public void showProvinces(Province[] provinces) //Este método será llamado por el presenter una vez tenga la lista de provincias
+    //Este método será llamado por el presenter una vez tenga la lista de provincias
+    public void showProvinces(Province[] provinces)
     {
         ArrayAdapter<Province> adapter = new ArrayAdapter<Province>(this, android.R.layout.simple_spinner_item, provinces);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         provinceSpinner.setAdapter(adapter); //Se le asigna al spinner un adapter que contiene la lista de provincias
     }
 
-    public void showTowns(Town[] towns) //Este método será llamados por el presenter una vez tenga la lista de pueblos
+    //Este método será llamados por el presenter una vez tenga la lista de pueblos
+    public void showTowns(Town[] towns)
     {
         ArrayAdapter<Town> adapter = new ArrayAdapter<Town>(this, android.R.layout.simple_dropdown_item_1line, towns);
         townText.setAdapter(adapter); //Se le asigna al texto de autocompletado un adapter que contiene la lista de pueblos
     }
 
-    private void showFuelTypes() //Rellana el spinner de los combustibles con los combustibles guardados en memoria
+    //Rellana el spinner de los combustibles con los combustibles guardados en memoria
+    private void showFuelTypes()
     {
         ArrayList<GasType> list = new ArrayList(); //Se genera una lista con los tipos de combustibles
         list.add(GasType.G95);
@@ -172,19 +179,22 @@ public class GasSelectionActivity extends AppCompatActivity {
     // Métodos relacionados con el campo de pueblos
     //
 
-    private void setTownText(String value) //Cambia el texto del campo del pueblo
+    //Cambia el texto del campo del pueblo
+    private void setTownText(String value)
     {
         townText.setText(value);
         onTownTextChanged(townText.getText().toString()); //En todas las llamadas a este método, el valor pasado es una cadena vacía, por lo que esta sentencia no tiene utilidad
         //Pero ello permite que si se pasara un valor distinto a una cadena vacía, comprobaría si el nuevo pueblo es correcto o no
     }
 
-    private void onTownTextChanged(String s) //Envia al presenter el string con el texto actual del campo del pueblo para que compruebe si el pueblo existe en la provincia seleccionada
+    //Envia al presenter el string con el texto actual del campo del pueblo para que compruebe si el pueblo existe en la provincia seleccionada
+    private void onTownTextChanged(String s)
     {
         presenter.onTownTextChanged(s);
     }
 
-    public void changedTownTextColor(boolean correct) //Este método será llamado por el presenter una vez haya comprobado si el pueblo existe en la provincia seleccionada
+    //Este método será llamado por el presenter una vez haya comprobado si el pueblo existe en la provincia seleccionada
+    public void changedTownTextColor(boolean correct)
     {
         if(correct)
         {
@@ -200,22 +210,26 @@ public class GasSelectionActivity extends AppCompatActivity {
     // Otros métodos
     //
 
-    public void enableShowPricesButton(boolean param) //Activa/desactiva el botón para pasar a la siguiente actividad en función de si el pueblo introducido existe
+    //Activa/desactiva el botón para pasar a la siguiente actividad en función de si el pueblo introducido existe
+    public void enableShowPricesButton(boolean param)
     {
         showPricesButton.setEnabled(param);
     }
 
-    public void showToast(String message) //Sirve mostrar mensajes de error (en concreto, errores de la database)
+    //Sirve mostrar mensajes de error (en concreto, errores de la database)
+    public void showToast(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void showProgressBar(boolean param) //Muestra y desmuestra la barra de progreso
+    //Muestra y desmuestra la barra de progreso
+    public void showProgressBar(boolean param)
     {
         progressBar.setVisibility(param ? View.VISIBLE : View.GONE);
     }
 
-    public void nextActivity(View view) //Será llamado cuando se pulse el botón para pasar a la siguiente actividad
+    //Será llamado cuando se pulse el botón para pasar a la siguiente actividad
+    public void nextActivity(View view)
     {
         Intent intent = new Intent(GasSelectionActivity.this, ShowGasStationActivity.class);
         intent.putExtra("Town", presenter.getSelectedTown()); //A la siguiente actividad es necesario para el pueblo seleccionado (se lo pide al presenter, que se lo pedirá al model)
