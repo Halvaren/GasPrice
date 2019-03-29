@@ -26,7 +26,7 @@ import alvaro.sabi.rosquilletas.gasprice.model.database.Town;
 import alvaro.sabi.rosquilletas.gasprice.showPrices.ShowGasStationActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GasSelectionActivity extends AppCompatActivity {
+public class GasSelectionActivity extends AppCompatActivity implements GasSelectionViewInterface{
 
     private GasSelectionPresenter presenter;
 
@@ -161,7 +161,7 @@ public class GasSelectionActivity extends AppCompatActivity {
     }
 
     //Rellana el spinner de los combustibles con los combustibles guardados en memoria
-    private void showFuelTypes()
+    public void showFuelTypes()
     {
         ArrayList<GasType> list = new ArrayList(); //Se genera una lista con los tipos de combustibles
         list.add(GasType.G95);
@@ -180,7 +180,7 @@ public class GasSelectionActivity extends AppCompatActivity {
     //
 
     //Cambia el texto del campo del pueblo
-    private void setTownText(String value)
+    public void setTownText(String value)
     {
         townText.setText(value);
         onTownTextChanged(townText.getText().toString()); //En todas las llamadas a este método, el valor pasado es una cadena vacía, por lo que esta sentencia no tiene utilidad
@@ -188,7 +188,7 @@ public class GasSelectionActivity extends AppCompatActivity {
     }
 
     //Envia al presenter el string con el texto actual del campo del pueblo para que compruebe si el pueblo existe en la provincia seleccionada
-    private void onTownTextChanged(String s)
+    public void onTownTextChanged(String s)
     {
         presenter.onTownTextChanged(s);
     }
