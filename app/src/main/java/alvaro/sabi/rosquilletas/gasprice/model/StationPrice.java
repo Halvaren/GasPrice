@@ -1,6 +1,6 @@
 package alvaro.sabi.rosquilletas.gasprice.model;
 
-public class StationPrice { //hay que parcelarlo :)
+public class StationPrice {
     private String label; //Rotulo, nombre de la gasolinera
     private String address; //Direccion de la gasolinera
     private String productPrice; //Precio del producto en cuestión en la gasolinera
