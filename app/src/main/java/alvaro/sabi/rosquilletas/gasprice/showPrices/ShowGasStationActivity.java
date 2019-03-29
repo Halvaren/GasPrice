@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import alvaro.sabi.rosquilletas.gasprice.R;
